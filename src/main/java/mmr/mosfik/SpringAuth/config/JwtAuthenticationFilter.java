@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (Arrays.asList(SecurityConfiguration.whiteListedRoutes).contains(request.getServletPath()) ||authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
