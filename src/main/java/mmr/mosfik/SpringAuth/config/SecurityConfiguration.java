@@ -16,7 +16,10 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-    public static final String[] whiteListedRoutes = new String[]{"/api/v1/auth/**"};
+    public static final String[] whiteListedRoutes = new String[]{
+            "/api/v1/auth/**",
+            "/api/v1/all/**"
+    };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
@@ -25,8 +28,16 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers(whiteListedRoutes)
+                        req
+                                .requestMatchers(whiteListedRoutes)
                                 .permitAll()
+
+                                .requestMatchers("/api/v1/demo/admin")
+                                .hasRole("ADMIN")
+
+                                .requestMatchers("/api/v1/demo/user")
+                                .hasRole("USER")
+
                                 .anyRequest()
                                 .authenticated()
                 )

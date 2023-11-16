@@ -14,3 +14,5 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
+jwt:
+  secretKey: "wiHpgJV9Is0zQRcsQYuOfVblNxfXkU4z6JquCyd4INV"

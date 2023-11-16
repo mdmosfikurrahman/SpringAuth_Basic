@@ -8,9 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/demo")
 public class DemoController {
-    @GetMapping
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello from secured endpoint");
+    @GetMapping("/all")
+    public ResponseEntity<String> sayHelloFromAll() {
+        return ResponseEntity.ok("I am from all");
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<String> sayHelloFromAdmin() {
+        return ResponseEntity.ok("I am from admin");
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<String> sayHelloFromUser() {
+        return ResponseEntity.ok("I am from user");
     }
 
 }
