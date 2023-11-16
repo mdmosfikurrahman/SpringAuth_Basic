@@ -20,6 +20,15 @@ public class SecurityConfiguration {
             "/api/v1/auth/**",
             "/api/v1/all/**"
     };
+
+    public static final String[] adminRoutes = new String[]{
+            "/api/v1/demo/admin/**"
+    };
+
+    public static final String[] userRoutes = new String[]{
+            "/api/v1/demo/user"
+    };
+
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
@@ -32,10 +41,10 @@ public class SecurityConfiguration {
                                 .requestMatchers(whiteListedRoutes)
                                 .permitAll()
 
-                                .requestMatchers("/api/v1/demo/admin")
+                                .requestMatchers(adminRoutes)
                                 .hasRole("ADMIN")
 
-                                .requestMatchers("/api/v1/demo/user")
+                                .requestMatchers(userRoutes)
                                 .hasRole("USER")
 
                                 .anyRequest()

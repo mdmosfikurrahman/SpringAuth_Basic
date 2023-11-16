@@ -1,3 +1,0 @@
-Demo Controller: http://localhost:8080/api/v1/demo
-User Registration: http://localhost:8080/api/v1/auth/register
-User Authentication: http://localhost:8080/api/v1/auth/authenticate
