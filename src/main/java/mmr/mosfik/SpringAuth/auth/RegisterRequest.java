@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mmr.mosfik.SpringAuth.entity.Role;
+import mmr.mosfik.SpringAuth.model.user.Role;
 
 @Data
 @Builder
