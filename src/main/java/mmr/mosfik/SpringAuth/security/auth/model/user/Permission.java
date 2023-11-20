@@ -3,7 +3,6 @@ package mmr.mosfik.SpringAuth.security.auth.model.user;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
 @RequiredArgsConstructor
 public enum Permission {
 
@@ -20,5 +19,6 @@ public enum Permission {
     MANAGER_DELETE("management:delete"),
     ;
 
+    @Getter
     private final String permission;
 }
