@@ -61,6 +61,9 @@ public class SecurityConfiguration {
                                 .requestMatchers(DELETE, managementRoutes)
                                 .hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
 
+                                .requestMatchers(adminRoutes)
+                                .hasRole(ADMIN.name())
+
                                 .requestMatchers(GET, adminRoutes)
                                 .hasAuthority(ADMIN_READ.name())
 
