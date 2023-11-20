@@ -33,10 +33,6 @@ public class SecurityConfiguration {
             "/api/v1/admin/**"
     };
 
-    public static final String[] userRoutes = new String[]{
-            "/api/v1/books/**"
-    };
-
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
@@ -79,15 +75,6 @@ public class SecurityConfiguration {
 
                                 .requestMatchers(DELETE, adminRoutes)
                                 .hasAuthority(ADMIN_DELETE.name())
-
-                                .requestMatchers(userRoutes)
-                                .hasAnyRole(ADMIN.name(), MANAGER.name(), USER.name())
-
-                                .requestMatchers(POST, userRoutes)
-                                .hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-
-                                .requestMatchers(GET, userRoutes)
-                                .hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name(), USER_READ.name())
 
                                 .anyRequest()
                                 .authenticated()

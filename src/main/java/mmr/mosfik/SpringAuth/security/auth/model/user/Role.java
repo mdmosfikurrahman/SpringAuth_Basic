@@ -24,17 +24,13 @@ public enum Role {
                     Permission.MANAGER_CREATE
             )
     ),
+
     MANAGER(
             Set.of(
                     Permission.MANAGER_READ,
                     Permission.MANAGER_UPDATE,
                     Permission.MANAGER_DELETE,
                     Permission.MANAGER_CREATE
-            )
-    ),
-    USER(
-            Set.of(
-            Permission.USER_READ
             )
     )
 
