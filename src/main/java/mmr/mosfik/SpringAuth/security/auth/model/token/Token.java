@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mmr.mosfik.SpringAuth.security.auth.model.user.User;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import mmr.mosfik.SpringAuth.security.auth.model.user.User;
 public class Token {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     public Integer id;
 
     @Column(unique = true)

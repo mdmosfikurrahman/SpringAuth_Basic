@@ -18,6 +18,12 @@ public enum Permission {
     MANAGER_CREATE("management:create"),
     MANAGER_UPDATE("management:update"),
     MANAGER_DELETE("management:delete"),
+
+    // User Permission Authority
+    USER_READ("user:read"),
+    USER_CREATE("user:create"),
+    USER_UPDATE("user:update"),
+    USER_DELETE("user:delete")
     ;
 
     private final String permission;
