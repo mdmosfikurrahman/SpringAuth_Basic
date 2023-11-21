@@ -1,4 +1,4 @@
-package mmr.mosfik.SpringAuth.service;
+package mmr.mosfik.SpringAuth.service.management;
 
 public interface ManagementService {
     String get();

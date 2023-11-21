@@ -1,4 +1,4 @@
-package mmr.mosfik.SpringAuth.service;
+package mmr.mosfik.SpringAuth.service.management;
 
 import org.springframework.stereotype.Service;
 

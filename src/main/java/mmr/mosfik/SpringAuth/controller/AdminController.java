@@ -1,6 +1,6 @@
 package mmr.mosfik.SpringAuth.controller;
 
-import mmr.mosfik.SpringAuth.service.AdminService;
+import mmr.mosfik.SpringAuth.service.admin.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
