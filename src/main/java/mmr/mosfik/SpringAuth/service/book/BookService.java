@@ -8,7 +8,6 @@ import java.util.List;
 public interface BookService {
     void save(BookRequest request);
     List<Book> findAll();
-    String put();
-
-    String delete();
+    void update(Integer bookId, BookRequest request);
+    void delete(Integer bookId);
 }

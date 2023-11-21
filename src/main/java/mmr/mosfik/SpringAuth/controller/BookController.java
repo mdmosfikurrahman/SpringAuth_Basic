@@ -32,15 +32,18 @@ public class BookController {
         return ResponseEntity.ok(bookService.findAll());
     }
 
-    @PutMapping
+    @PutMapping("/{bookId}")
     @PreAuthorize("hasAuthority('admin:update')")
-    public ResponseEntity<String> put() {
-        return ResponseEntity.ok(bookService.put());
+    public ResponseEntity<String> update(@PathVariable Integer bookId, @RequestBody BookRequest request) {
+        bookService.update(bookId, request);
+        return ResponseEntity.ok("Book updated successfully");
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{bookId}")
     @PreAuthorize("hasAuthority('admin:delete')")
-    public ResponseEntity<String> delete() {
-        return ResponseEntity.ok(bookService.delete());
+    public ResponseEntity<String> delete(@PathVariable Integer bookId) {
+        bookService.delete(bookId);
+        return ResponseEntity.ok("Book deleted successfully");
     }
+
 }

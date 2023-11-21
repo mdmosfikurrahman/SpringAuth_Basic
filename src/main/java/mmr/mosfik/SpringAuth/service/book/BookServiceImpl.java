@@ -2,6 +2,7 @@ package mmr.mosfik.SpringAuth.service.book;
 
 import lombok.RequiredArgsConstructor;
 import mmr.mosfik.SpringAuth.dto.BookRequest;
+import mmr.mosfik.SpringAuth.exception.ResourceNotFoundException;
 import mmr.mosfik.SpringAuth.model.Book;
 import mmr.mosfik.SpringAuth.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,21 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String put() {
-        return "PUT:: admin updated this";
+    public void update(Integer bookId, BookRequest request) {
+        Book existingBook = repository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
+
+        existingBook.setAuthorName(request.getAuthorName());
+        existingBook.setIsbnNumber(request.getIsbnNumber());
+
+        repository.save(existingBook);
     }
 
     @Override
-    public String delete() {
-        return "DELETE:: admin deleted this";
+    public void delete(Integer bookId) {
+        Book existingBook = repository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
+
+        repository.delete(existingBook);
     }
 }
