@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+import static org.springframework.http.HttpStatus.*;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -32,7 +34,7 @@ public class AuthenticationController {
             AuthenticationResponse response = service.register(request);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return handleException(HttpStatus.CONFLICT, e);
+            return handleException(CONFLICT, e);
         }
     }
 
@@ -42,11 +44,11 @@ public class AuthenticationController {
             AuthenticationResponse response = service.authenticate(request);
             return ResponseEntity.ok(response);
         } catch (ResourceNotFoundException e) {
-            return handleException(HttpStatus.NOT_FOUND, e);
+            return handleException(NOT_FOUND, e);
         } catch (AccessForbiddenException e) {
-            return handleException(HttpStatus.FORBIDDEN, e);
+            return handleException(FORBIDDEN, e);
         } catch (Exception e) {
-            return handleException(HttpStatus.UNAUTHORIZED, e);
+            return handleException(UNAUTHORIZED, e);
         }
     }
 
