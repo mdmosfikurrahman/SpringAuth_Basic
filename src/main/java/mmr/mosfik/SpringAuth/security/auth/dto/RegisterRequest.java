@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mmr.mosfik.SpringAuth.security.auth.model.user.Gender;
 import mmr.mosfik.SpringAuth.security.auth.model.user.Role;
 
 @Data
@@ -16,4 +17,5 @@ public class RegisterRequest {
     private String email;
     private String password;
     private Role role;
+    private Gender gender;
 }

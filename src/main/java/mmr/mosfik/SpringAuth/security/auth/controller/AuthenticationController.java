@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import mmr.mosfik.SpringAuth.security.auth.dto.AuthenticationRequest;
 import mmr.mosfik.SpringAuth.security.auth.dto.AuthenticationResponse;
-import mmr.mosfik.SpringAuth.security.auth.service.AuthenticationService;
+import mmr.mosfik.SpringAuth.security.auth.service.authenication.AuthenticationService;
 import mmr.mosfik.SpringAuth.security.auth.dto.RegisterRequest;
 import mmr.mosfik.SpringAuth.exception.AccessForbiddenException;
 import mmr.mosfik.SpringAuth.exception.ErrorResponse;
@@ -26,12 +26,12 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         try {
-            AuthenticationResponse response = service.register(request);
+            AuthenticationResponse response = authenticationService.register(request);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return handleException(CONFLICT, e);
@@ -41,7 +41,7 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest request) {
         try {
-            AuthenticationResponse response = service.authenticate(request);
+            AuthenticationResponse response = authenticationService.authenticate(request);
             return ResponseEntity.ok(response);
         } catch (ResourceNotFoundException e) {
             return handleException(NOT_FOUND, e);
@@ -57,7 +57,7 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-        service.refreshToken(request, response);
+        authenticationService.refreshToken(request, response);
     }
 
     private ResponseEntity<ErrorResponse> handleException(HttpStatus status, Exception e) {

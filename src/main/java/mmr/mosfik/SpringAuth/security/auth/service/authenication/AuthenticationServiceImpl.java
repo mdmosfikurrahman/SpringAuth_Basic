@@ -1,4 +1,4 @@
-package mmr.mosfik.SpringAuth.security.auth.service;
+package mmr.mosfik.SpringAuth.security.auth.service.authenication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,13 +27,14 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationServiceImpl implements AuthenticationService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenRepository tokenRepository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    @Override
     public AuthenticationResponse register(RegisterRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new ResourceAlreadyExistsException("User with this email already exists");
@@ -44,6 +45,7 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .gender(request.getGender())
                 .role(request.getRole())
                 .build();
 
@@ -58,6 +60,7 @@ public class AuthenticationService {
                 .build();
     }
 
+    @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         var userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isEmpty()) {
@@ -111,6 +114,7 @@ public class AuthenticationService {
         tokenRepository.saveAll(validUserTokens);
     }
 
+    @Override
     public void refreshToken(
             HttpServletRequest request,
             HttpServletResponse response
